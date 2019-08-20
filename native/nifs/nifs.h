@@ -729,18 +729,18 @@ TYPED_NIF(find, TYPE_NAME)
   matrix_data = (TYPE *)matrix.data;
   element_data = (TYPE *)element.data;
 
-  if (isnan(*element_data))
-  {
-    for (uint64_t i = 0; i < matrix.size / sizeof(TYPE); i++)
-      if (isnan(matrix_data[i]))
-        return enif_make_int(env, i);
-  }
-  else
-  {
+  // if (isnan(*element_data))
+  // {
+  //  for (uint64_t i = 0; i < matrix.size / sizeof(TYPE); i++)
+  //    if (isnan(matrix_data[i]))
+  //      return enif_make_int(env, i);
+  // }
+  // else
+  // {
     for (uint64_t i = 0; i < matrix.size / sizeof(TYPE); i++)
       if (matrix_data[i] == *element_data)
         return enif_make_int(env, i);
-  }
+  // }
 
   return enif_make_atom(env, "nil");
 }
